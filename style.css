@@ -1,0 +1,748 @@
+/* =========================================
+   1. ROOT COLOR SYSTEM (Variabel warna)
+========================================= */
+
+:root{
+    --primary:#a855f7;
+    --secondary:#ff5acd;
+
+    --bg-main:transparent;
+
+    --text-main:#111111;
+    --text-soft:#555;
+
+    --transition:all .35s cubic-bezier(.4,0,.2,1);
+}
+/* drak mode */
+[data-theme="dark"]{
+    --bg-main:#0f0f0f;
+    --text-main:#ffffff;
+    --text-soft:#aaaaaa;
+
+    --bg-card:rgba(30,30,30,0.8);
+}
+
+[data-theme="dark"] .skill-card{
+background:rgba(30,30,30,0.8);
+border:1px solid rgba(255,255,255,0.05);
+}
+
+[data-theme="dark"] .tool{
+background:#1e1e1e;
+color:white;
+}
+
+[data-theme="dark"] .navbar{
+background:rgba(20,20,20,0.8);
+border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+#darkToggle{
+background:none;
+border:none;
+font-size:1.2rem;
+cursor:pointer;
+color:var(--text-main);
+}
+
+/* =========================================
+   2. GLOBAL RESET
+========================================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:var(--bg-main);
+color:var(--text-main);
+overflow-x:hidden;
+transition: background .5s ease,color .5s ease;
+}
+
+
+/* =========================================
+   3. SPLINE 3D BACKGROUND
+========================================= */
+
+spline-viewer{
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+
+z-index:-1;
+pointer-events:none;
+}
+
+
+/* =========================================
+   4. INTRO SCREEN
+========================================= */
+
+#intro-screen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+
+z-index:9999;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+background:white;
+
+background-image:
+linear-gradient(rgba(0,0,0,0.05) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,0,0,0.05) 1px,transparent 1px);
+
+background-size:50px 50px;
+
+transition:transform .8s cubic-bezier(.77,0,.175,1);
+}
+
+.slide-up{
+transform:translateY(-100%);
+}
+
+.intro-text{
+font-size:2.5rem;
+font-weight:800;
+text-align:center;
+
+background:linear-gradient(90deg,#ff5acd,#a855f7);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+
+opacity:0;
+animation:textFadeIn 1.5s ease forwards;
+}
+
+#start-btn{
+margin-top:30px;
+padding:10px 30px;
+
+font-size:1rem;
+font-weight:700;
+
+color:#ff5acd;
+border:2px solid #ff5acd;
+
+background:transparent;
+border-radius:50px;
+
+cursor:pointer;
+transition:.4s;
+
+opacity:0;
+animation:btnFadeIn 1s ease forwards .5s;
+}
+
+#start-btn:hover{
+background:#ff5acd;
+color:white;
+box-shadow:0 0 20px #ff5acd;
+}
+
+@keyframes textFadeIn{
+to{opacity:1}
+}
+
+@keyframes btnFadeIn{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+
+/* =========================================
+   5. NAVBAR
+========================================= */
+
+.navbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 5%;
+
+background:rgba(255,255,255,0.7);
+backdrop-filter:blur(20px);
+
+border-bottom:1px solid rgba(0,0,0,0.05);
+
+z-index:1000;
+}
+
+.brand-logo{
+font-size:1.8rem;
+font-weight:800;
+text-decoration:none;
+
+background:linear-gradient(90deg,#4facfe,#a855f7,#ff5acd);
+-webkit-background-clip:text;
+background-clip:text;
+
+color:transparent;
+}
+
+/* NAV LINKS */
+
+.nav-links a{
+color:#555;
+text-decoration:none;
+margin:0 15px;
+transition:.3s;
+position:relative;
+}
+
+.nav-links a:hover{
+color:#a855f7;
+}
+
+/* underline animation */
+
+.nav-links a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-5px;
+width:0;
+height:2px;
+
+background:linear-gradient(90deg,#a855f7,#ff5acd);
+transition:0.3s;
+}
+
+.nav-links a:hover::after{
+width:100%;
+}
+
+
+/* =========================================
+   6. HERO SECTION
+========================================= */
+
+.hero-section{
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+min-height:100vh;
+
+padding:0 10%;
+padding-top:80px;
+}
+
+.hero-text-wrapper{
+max-width:50%;
+z-index:2;
+}
+
+.badge{
+display:inline-block;
+
+padding:8px 15px;
+
+background:rgba(168,85,247,.1);
+border:1px solid #a855f7;
+
+color:#7e22ce;
+
+border-radius:50px;
+
+font-size:.9rem;
+margin-bottom:20px;
+}
+
+.hero-heading{
+font-size:3.8rem;
+font-weight:800;
+}
+
+.highlight{
+background:linear-gradient(90deg,#4facfe,#a855f7,#ff5acd);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+}
+
+.hero-subtext{
+font-size:1.1rem;
+color:var(--text-soft);
+margin-top:10px;
+margin-bottom:30px;
+}
+
+.hero-button{
+display:flex;
+gap:20px;
+}
+
+/* BUTTON PRIMARY */
+
+.btn-primary{
+padding:12px 32px;
+border-radius:50px;
+
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+
+border:none;
+color:white;
+
+font-weight:600;
+
+cursor:pointer;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+transition:var(--transition);
+
+position:relative;
+overflow:hidden;
+}
+
+.btn-primary:hover{
+transform:translateY(-3px);
+box-shadow:0 15px 40px rgba(168,85,247,.35);
+}
+
+/* BUTTON OUTLINE */
+
+.btn-outline{
+padding:10px 25px;
+
+border:2px solid #a855f7;
+color:#7e22ce;
+
+border-radius:8px;
+
+text-decoration:none;
+font-weight:bold;
+
+transition:.3s;
+}
+
+.btn-outline:hover{
+background:rgba(168,85,247,.1);
+}
+
+
+/* =========================================
+   7. SKILLS SECTION
+========================================= */
+
+.skills-section{
+padding:100px 8%;
+text-align:center;
+}
+
+.section-title{
+font-size:2.5rem;
+font-weight:800;
+}
+
+.text-purple{
+color:#a855f7;
+}
+
+.skills-container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:30px;
+margin-top:50px;
+}
+
+.skill-card{
+background:rgba(255,255,255,0.65);
+border:1px solid rgba(0,0,0,0.08);
+
+border-radius:18px;
+padding:30px;
+
+transition:.35s;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.skill-card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* ICON */
+
+.icon-box{
+width:60px;
+height:60px;
+
+margin:auto;
+margin-bottom:20px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:14px;
+
+background:linear-gradient(135deg,#7c3aed,#a855f7);
+color:white;
+
+font-size:1.6rem;
+}
+
+.skill-card:hover .icon-box{
+transform:rotate(10deg) scale(1.1);
+transition:.3s;
+}
+
+/* TEXT */
+
+.skill-card h3{
+font-size:1.2rem;
+margin-bottom:10px;
+}
+
+.skill-card p{
+font-size:.9rem;
+color:#555;
+line-height:1.6;
+}
+
+/* CERTIFICATE */
+
+.cert-image{
+width:100%;
+max-width:200px;
+border-radius:10px;
+margin-top:10px;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+
+/* =========================================
+   8. TECH STACK
+========================================= */
+
+.tech-section{
+padding:50px 5% 100px;
+text-align:center;
+}
+
+/* =========================================
+   TOOLS PRO VERSION
+========================================= */
+
+.tools{
+    overflow:hidden;
+    padding:80px 0;
+    width:100%;
+    position:relative;
+    perspective:1200px;
+}
+
+/* TRACK */
+.tools-track{
+    display:flex;
+    gap:30px;
+    width:max-content;
+
+    animation:scroll 40s linear infinite;
+}
+
+/* PAUSE SAAT HOVER */
+.tools:hover .tools-track{
+    animation-play-state:paused;
+}
+
+/* CARD */
+.tool{
+    flex:0 0 auto;
+    position:relative;
+   will-change: transform;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    width:150px;
+    height:150px;
+
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(12px);
+
+    border-radius:22px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+
+    font-weight:bold;
+
+    transform-style:preserve-3d;
+    transition:transform .25s ease, box-shadow .25s ease;
+}
+
+/* ICON */
+.tool i{
+    font-size:30px;
+    margin-bottom:10px;
+    transform:translateZ(40px);
+}
+
+/* TEXT */
+.tool span{
+    transform:translateZ(25px);
+}
+
+/* HOVER */
+.tool:hover{
+    transform:translateY(-10px) scale(1.05);
+    
+    box-shadow:
+    0 25px 50px rgba(0,0,0,0.2);
+}
+/* GLOW */
+.tool::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    border-radius:22px;
+
+    background:linear-gradient(135deg,#a855f7,#ff5acd);
+    opacity:0;
+
+    transition:.3s;
+    z-index:-1;
+}
+
+.tool:hover::before{
+    opacity:0.2;
+}
+
+/* SCROLL */
+@keyframes scroll{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+}
+/* ICON COLORS */
+
+.tool:nth-child(1) i{color:#e34c26;} 
+.tool:nth-child(2) i{color:#264de4;} 
+.tool:nth-child(3) i{color:#f7df1e;} 
+.tool:nth-child(4) i{color:#61dafb;} 
+.tool:nth-child(5) i{color:#f1502f;} 
+.tool:nth-child(6) i{color:#3776ab;} 
+.tool:nth-child(7) i{color:#e34c26;} 
+.tool:nth-child(8) i{color:#264de4;} 
+.tool:nth-child(9) i{color:#f7df1e;} 
+.tool:nth-child(10) i{color:#61dafb;} 
+.tool:nth-child(11) i{color:#f1502f;} 
+.tool:nth-child(12) i{color:#3776ab;} 
+
+
+
+/* SCROLL ANIMATION */
+
+@keyframes scroll{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
+}
+
+
+/* =========================================
+   9. RIPPLE EFFECT
+========================================= */
+
+.nav-links a,
+.btn-primary{
+position:relative;
+overflow:hidden;
+}
+
+.nav-links a::before,
+.btn-primary::before{
+
+content:"";
+position:absolute;
+
+top:50%;
+left:50%;
+
+width:0;
+height:0;
+
+background:rgba(168,85,247,0.35);
+
+border-radius:50%;
+
+transform:translate(-50%,-50%);
+transition:width .5s,height .5s,opacity .6s;
+
+opacity:0;
+}
+
+.nav-links a:hover::before,
+.btn-primary:hover::before{
+
+width:200%;
+height:200%;
+
+opacity:1;
+}
+
+/* =========================================
+   EDUCATION SECTION (PRO VERSION)
+========================================= */
+
+.education-section{
+  padding:100px 8%;
+  text-align:center;
+  position:relative;
+}
+
+/* CONTAINER GRID */
+.education-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:40px;
+  margin-top:60px;
+}
+
+/* CARD */
+.edu-card{
+  background:rgba(255,255,255,0.65);
+  backdrop-filter:blur(20px);
+
+  border-radius:20px;
+  padding:30px;
+
+  border:1px solid rgba(0,0,0,0.05);
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+
+  transition:all .35s ease;
+  text-align:center;
+
+  position:relative;
+  overflow:hidden;
+}
+
+/* HOVER EFFECT */
+.edu-card:hover{
+  transform:translateY(-12px) scale(1.02);
+  box-shadow:0 25px 60px rgba(0,0,0,0.15);
+}
+
+/* ICON */
+.edu-card .icon-box{
+  width:65px;
+  height:65px;
+
+  margin:auto;
+  margin-bottom:20px;
+
+  border-radius:16px;
+
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:1.6rem;
+}
+
+/* TITLE */
+.edu-card h3{
+  font-size:1.4rem;
+  font-weight:700;
+  margin-bottom:5px;
+}
+
+/* YEAR */
+.edu-year{
+  font-size:0.9rem;
+  color:#a855f7;
+  font-weight:600;
+  margin-bottom:15px;
+}
+
+/* TEXT */
+.edu-card p{
+  font-size:0.95rem;
+  color:var(--text-soft);
+  line-height:1.6;
+}
+
+/* =========================================
+   IMAGE FIX (SUPER RAPI)
+========================================= */
+
+.edu-image-wrapper{
+  width:100%;
+  height:150px;
+  margin-top:20px;
+
+  border-radius:14px;
+  overflow:hidden;
+
+  background:white;
+  padding:10px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+.edu-image{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  transition:0.4s;
+}
+
+/* HOVER IMAGE */
+.edu-card:hover .edu-image{
+  transform:scale(1.08);
+}
+
+/* =========================================
+   DARK MODE SUPPORT
+========================================= */
+
+[data-theme="dark"] .edu-card{
+  background:rgba(30,30,30,0.8);
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+[data-theme="dark"] .edu-image-wrapper{
+  background:#1e1e1e;
+}
