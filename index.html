@@ -1,382 +1,545 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Shinichi | 3D Experience</title>
-
-<meta name="description" content="Portfolio sederhana dengan elemen 3D">
-
+<title>Shinichi — Front-End Dev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="style.css">
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.90/build/spline-viewer.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-<!-- SPLINE VIEWER -->
-<script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.69/build/spline-viewer.js"></script>
-<spline-viewer url="https://prod.spline.design/AUtAmQFcHdOxpjJt/scene.splinecode"></spline-viewer>
 </head>
-<script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.73/build/spline-viewer.js"></script>
-<spline-viewer url="undefined"></spline-viewer>
 <body>
 
+<!-- Spline bg — stays interactive -->
+<spline-viewer url="https://prod.spline.design/colrViuStdPd47Ph/scene.splinecode"></spline-viewer>
 
-<!-- INTRO SCREEN -->
-<div id="intro-screen">
+<!-- Overlay for readability -->
+<div class="overlay"></div>
 
-<h1 class="intro-text">
-Welcome to my Portfolio
-</h1>
+<!-- Cursor -->
+<div id="c-dot"></div>
+<div id="c-ring"></div>
 
-<button id="start-btn">
-<span>Start</span>
-<i class="fa-solid fa-rocket"></i>
-</button>
+<!-- Progress bar -->
+<div id="bar"></div>
 
+<!-- Spline controls -->
+<div class="sp-panel">
+  <div class="sp-label">3D Scene</div>
+  <button class="sp-btn" onclick="toggleSp()"><i class="fa-solid fa-hand-pointer" id="spIc"></i> <span id="spTx">Interact</span></button>
+  <button class="sp-btn" onclick="resetSp()"><i class="fa-solid fa-rotate-left"></i> Reset</button>
 </div>
 
-
-<!-- NAVBAR -->
-<header class="navbar">
-
-<a href="#" class="brand-logo" data-aos="fade-down">
-Shinichi
-</a>
-
-<nav class="nav-links" data-aos="fade-down" data-aos-delay="200">
-
-<a href="#">Home</a>
-<a href="#skills">Sertifikat</a>
-<a href="#tech-stack">Tools</a>
-
-<a href="https://github.com/fazril299" target="_blank">
-<i class="fa-brands fa-github"></i> Github
-</a>
-<button id="darkToggle">
-<i class="fa-solid fa-moon"></i>
-</button>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">shinichi<span>.</span>dev</a>
+  <ul class="nav-links">
+    <li><a href="#hero"      class="active">Home</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certs">Sertifikat</a></li>
+    <li><a href="#education">Pendidikan</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+  <a href="https://github.com/fazril299" target="_blank" class="nav-pill">
+    <span class="nav-dot"></span> github
+  </a>
 </nav>
 
-<a href="#" class="btn-primary" data-aos="fade-down" data-aos-delay="400">
-Tentang Saya
-</a>
-
-</header>
-
+<!-- ══════════ PAGE ══════════ -->
+<div class="page">
 
 <!-- HERO -->
-<main class="hero-section">
-
-<div class="hero-text-wrapper">
-
-<div class="badge" data-aos="fade-up">
-Aku membenci ini
-</div>
-
-<h1 class="hero-heading" data-aos="fade-up" data-aos-delay="100">
-
-Welcome to <br>
-<span class="highlight">Zreal</span>
-
-</h1>
-
-<p class="hero-subtext" data-aos="fade-up" data-aos-delay="200">
-
-Saya adalah seorang mahawasiswa yang sedang belajar membuat website dengan eleman 3d
-Agar website saya lebih menarik dan interaktif, saya menggunakan teknologi 3D untuk memberikan pengalaman yang lebih imersif bagi pengunjung. Dengan menggunakan elemen 3D, saya dapat menciptakan tampilan yang lebih dinamis dan menarik, sehingga pengunjung dapat merasakan sensasi yang lebih nyata saat menjelajahi website saya. 
-</p>
-<div class="hero-button" data-aos="fade-up" data-aos-delay="300">
-
-<a href="https://www.dicoding.com/users/kevinsebastian/academies" target="_blank" class="btn-primary">
-Dicoding
-</a>
-
-<a href="https://app.spline.design/community" target="_blank" class="btn-outline">
-About me
-</a>
-
-</div>
-
-</div>
-
+<main id="hero" style="position:relative;">
+  <div class="hero-wrapper">
+    <div class="hero-text">
+      <div class="hero-tag">front-end</div>
+      <h1 class="hero-h1">
+        <span class="name">muliyael</span>
+        <span class="ghost">gbriael</span>
+      </h1>
+      <p class="hero-sub">
+        Mahasiswa yang fokus pada web3 dan web 3D. Hobi mendesain, bukan karena tugas. Fokus pada UI/UX dan ekosistem front-end modern.
+      </p>
+      <div class="hero-ctas">
+        <a href="#projects" class="cta-primary"><i class="fa-solid fa-layer-group"></i> Lihat Projek</a>
+        <a href="#contact"  class="cta-ghost">Kontak <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="creative-img-box">
+        <img src="https://cdns.klimg.com/resized/1200x600/p/headline/bintangi-pertaruhan-the-series-2-juan-b-b7775e.jpg" alt="Shinichi Profile" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="creative-fallback" style="display:none"><i class="fa-solid fa-user-astronaut"></i></div>
+        <div class="creative-glow"></div>
+        <div class="creative-border"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-n">3+</div><div class="stat-l">Sertifikat</div></div>
+    <div><div class="stat-n">6+</div><div class="stat-l">Tech Stack</div></div>
+    <div><div class="stat-n">5</div><div class="stat-l">Projects</div></div>
+  </div>
 </main>
 
+<div class="hr"></div>
 
-<!-- SOFT SKILLS -->
-<section id="skills" class="skills-section">
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="s-label r">Built by me</div>
+  <h2 class="s-title r">My <em>Projects</em></h2>
 
-<h2 class="section-title" data-aos="fade-up">
-Sertifikat<span class="text-purple">Me</span>
-</h2>
+  <div class="proj-grid">
 
-<div class="skills-container">
-
-
-<div class="skill-card" data-aos="flip-left">
-
-<div class="icon-box">
-<i class="fa-solid fa-users teamwork-icon"></i>
-</div>
-
-<h3>Manejeman proyek</h3>
-
-<img src="dicoding2.png" alt="Sertifikat Dicoding" class="cert-image" loading="lazy">
-
-</div>
-
-
-<div class="skill-card" data-aos="flip-left" data-aos-delay="200">
-
-<div class="icon-box">
-<i class="fa-solid fa-brain brain-icon"></i>
-</div>
-
-<h3>Web sederhana</h3>
-
-<img src="dicoding1.png" alt="Sertifikat Dicoding" class="cert-image" loading="lazy">
-
-</div>
-
-
-<div class="skill-card" data-aos="flip-left" data-aos-delay="400">
-
-<div class="icon-box">
-<i class="fa-solid fa-bolt adapt-icon"></i>
-</div>
-
-<h3>Ai sederhana</h3>
-
-<img src="ads.png" alt="Sertifikat Dicoding" class="cert-image" loading="lazy">
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- TECH STACK -->
-<section id="tech-stack" class="tech-section">
-
-<h2 class="section-title" data-aos="fade-up">
-My <span class="text-purple">Tools</span>
-</h2>
-
-<div class="tech-container">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<div class="tools">
-  <div class="tools-track">
-
-    <div class="tool">
-      <i class="fa-brands fa-html5"></i>
-      HTML
+    <!-- Featured -->
+    <div class="proj-card feat glass r">
+      <div class="proj-thumb"><i class="fa-solid fa-globe"></i></div>
+      <div class="proj-body">
+        <div class="proj-tags">
+          <span class="proj-tag">HTML</span><span class="proj-tag">CSS</span>
+          <span class="proj-tag">JavaScript</span><span class="proj-tag">Spline 3D</span>
+        </div>
+        <h3 class="proj-title">Portfolio Website 3D</h3>
+        <p class="proj-desc">Portfolio pribadi dengan latar 3D interaktif menggunakan Spline. Imersif dengan custom cursor, scroll reveal, dan glassmorphism design berlapis.</p>
+        <div class="proj-links">
+          <a href="https://github.com/fazril299" target="_blank" class="plink"><i class="fa-brands fa-github"></i> Source Code <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="plink alt"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+        </div>
+      </div>
     </div>
 
-    <div class="tool">
-      <i class="fa-brands fa-css3-alt"></i>
-      CSS
+    <div class="proj-card half glass r" style="transition-delay:.1s">
+      <div class="proj-thumb" style="font-size:2.5rem;"><i class="fa-solid fa-code"></i></div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">HTML</span><span class="proj-tag">CSS</span><span class="proj-tag">JS</span></div>
+        <h3 class="proj-title">Belajar Web Sederhana</h3>
+        <p class="proj-desc">Web app latihan Dicoding — responsive layout, DOM manipulation, interaksi web dasar.</p>
+        <div class="proj-links"><a href="https://github.com/fazril299" target="_blank" class="plink"><i class="fa-brands fa-github"></i> GitHub <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
     </div>
 
-    <div class="tool">
-      <i class="fa-brands fa-js"></i>
-      JavaScript
+    <div class="proj-card half glass r" style="transition-delay:.18s">
+      <div class="proj-thumb" style="font-size:2.5rem;"><i class="fa-solid fa-brain"></i></div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">AI/ML</span></div>
+        <h3 class="proj-title">AI Fundamentals Project</h3>
+        <p class="proj-desc">Eksplorasi dasar-dasar AI dan machine learning — klasifikasi data dan model prediksi dari kursus Dicoding.</p>
+        <div class="proj-links"><a href="https://github.com/fazril299" target="_blank" class="plink"><i class="fa-brands fa-github"></i> GitHub <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
     </div>
 
-    <div class="tool">
-      <i class="fa-brands fa-react"></i>
-      React
+    <div class="proj-card third glass r" style="transition-delay:.26s">
+      <div class="proj-thumb" style="font-size:2.2rem;"><i class="fa-solid fa-diagram-project"></i></div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">Agile</span><span class="proj-tag">PM</span></div>
+        <h3 class="proj-title">Digital Project Management</h3>
+        <p class="proj-desc">Sprint planning, task tracking, dokumentasi delivery — metodologi agile.</p>
+        <div class="proj-links"><a href="https://github.com/fazril299" target="_blank" class="plink"><i class="fa-brands fa-github"></i> GitHub <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
     </div>
 
-    <div class="tool">
-      <i class="fa-brands fa-git-alt"></i>
-      Git
+    <div class="proj-card third glass r" style="transition-delay:.32s">
+      <div class="proj-thumb" style="font-size:2.2rem;"><i class="fa-brands fa-figma" style="color:#F24E1E;opacity:.5;"></i></div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">Figma</span><span class="proj-tag">UI/UX</span></div>
+        <h3 class="proj-title">UI/UX Design System</h3>
+        <p class="proj-desc">Component library, typography scale, color tokens di Figma untuk project web.</p>
+        <div class="proj-links"><a href="#" class="plink alt"><i class="fa-brands fa-figma"></i> Figma File</a></div>
+      </div>
     </div>
 
-   <div class="tool">
-      <i class="fa-brands fa-python"></i>
-      Python
+    <div class="proj-card third glass r" style="transition-delay:.38s">
+      <div class="proj-thumb" style="font-size:2.2rem;"><i class="fa-brands fa-react" style="color:#61dafb;opacity:.4;"></i></div>
+      <div class="proj-body">
+        <div class="proj-tags"><span class="proj-tag">React</span><span class="proj-tag">Node.js</span></div>
+        <h3 class="proj-title">Coming Soon</h3>
+        <p class="proj-desc">Project baru sedang dalam pengerjaan — stay tuned untuk update terbaru.</p>
+        <div class="proj-links"><a href="https://github.com/fazril299" target="_blank" class="plink"><i class="fa-brands fa-github"></i> GitHub <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
     </div>
-    <!-- Duplikat tools agar scroll terus -->
-
-    <div class="tool">
-      <i class="fa-brands fa-html5"></i>
-      HTML
-    </div>
-
-    <div class="tool">
-      <i class="fa-brands fa-css3-alt"></i>
-      CSS
-    </div>
-
-    <div class="tool">
-      <i class="fa-brands fa-js"></i>
-      JavaScript
-    </div>
-
-    <div class="tool">
-      <i class="fa-brands fa-react"></i>
-      React
-    </div>
-
-    <div class="tool">
-      <i class="fa-brands fa-git-alt"></i>
-      Git
-    </div>
-
-   <div class="tool">
-      <i class="fa-brands fa-python"></i>
-      Python
-    </div>
-    </div>
-
-    <!-- LATAR PENDIDIKAN -->
-<section id="education" class="education-section">
-
-<h2 class="section-title" data-aos="fade-up">
-Latar <span class="text-purple">Pendidikan</span>
-</h2>
-
-<div class="education-container">
-
-  <!-- CARD 1 -->
-  <div class="edu-card" data-aos="fade-up">
-    
-    <div class="icon-box">
-      <i class="fa-solid fa-graduation-cap"></i>
-    </div>
-
-    <h3>SMK Wikrama bogor</h3>
-    <p class="edu-year">2025-2027</p>
-
-
-    <img 
-      src="wikrama.png"
-      alt="SMK Wikrama Bogor"
-      class="edu-image">
 
   </div>
+</section>
 
-  <!-- CARD 2 -->
-  <div class="edu-card" data-aos="fade-up" data-aos-delay="200">
-    
-  <div class="icon-box">
-    <i class="fa-solid fa-university"></i>
+<div class="hr"></div>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="s-label r">On-chain credentials</div>
+  <h2 class="s-title r">Sertifikat <em>Saya</em></h2>
+  <div class="cert-grid">
+
+    <div class="cert-card r">
+      <img src="dicoding2.png" class="cert-img" alt=""
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="cert-fallback" style="display:none"><i class="fa-solid fa-diagram-project"></i></div>
+      <div class="cert-issuer">Dicoding Indonesia</div>
+      <h3 class="cert-name">Manajemen Proyek Digital</h3>
+      <p class="cert-desc">Fundamental project management skills for digital products</p>
+      <div class="cert-foot">
+        <span class="cert-ok"><i class="fa-solid fa-circle-check"></i> Verified</span>
+        <span class="cert-yr">2024</span>
+      </div>
+    </div>
+
+    <div class="cert-card r" style="transition-delay:.1s">
+      <img src="dicoding1.png" class="cert-img" alt=""
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="cert-fallback" style="display:none"><i class="fa-solid fa-code"></i></div>
+      <div class="cert-issuer">Dicoding Indonesia</div>
+      <h3 class="cert-name">Belajar Membuat Web Sederhana</h3>
+      <p class="cert-desc">HTML, CSS, dan JavaScript dasar untuk web development</p>
+      <div class="cert-foot">
+        <span class="cert-ok"><i class="fa-solid fa-circle-check"></i> Verified</span>
+        <span class="cert-yr">2024</span>
+      </div>
+    </div>
+
+    <div class="cert-card r" style="transition-delay:.2s">
+      <img src="ads.png" class="cert-img" alt=""
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="cert-fallback" style="display:none"><i class="fa-solid fa-robot"></i></div>
+      <div class="cert-issuer">Dicoding Indonesia</div>
+      <h3 class="cert-name">Pengenalan Kecerdasan Buatan</h3>
+      <p class="cert-desc">Fundamentals of artificial intelligence and machine learning</p>
+      <div class="cert-foot">
+        <span class="cert-ok"><i class="fa-solid fa-circle-check"></i> Verified</span>
+        <span class="cert-yr">2025</span>
+      </div>
+    </div>
+
   </div>
-
-  <h3>Binus University</h3>
-  <p class="edu-year">OTW</p>
-
-  <!-- GAMBAR -->
-  <div class="edu-image-wrapper">
-  <img 
-    src="binus.jpg"
-    alt="Binus University"
-    class="edu-image"
-  >
-</div>
-</div>
-
 </section>
 
+<div class="hr"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="s-label r">Academic records</div>
+  <h2 class="s-title r">Latar <em>Pendidikan</em></h2>
+  <div class="edu-grid">
+
+    <div class="edu-card glass r">
+      <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+      <div>
+        <h3 class="edu-school">SMK Wikrama Bogor</h3>
+        <p class="edu-major">Rekayasa Perangkat Lunak</p>
+        <div class="edu-meta">
+          <span class="edu-badge">2025 – 2027</span>
+          <span class="edu-live">Aktif</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-card glass r" style="transition-delay:.14s">
+      <div class="edu-icon" style="background:rgba(56,189,248,.09);border-color:rgba(56,189,248,.18);color:var(--ac2)"><i class="fa-solid fa-building-columns"></i></div>
+      <div>
+        <h3 class="edu-school">Binus University</h3>
+        <p class="edu-major">Computer Science</p>
+        <div class="edu-meta">
+          <span class="edu-badge">OTW</span>
+          <span class="edu-coming">↗ Upcoming</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
+<div class="hr"></div>
 
+<!-- SKILLS -->
+<section id="skills">
+  <div class="s-label r">Core abilities</div>
+  <h2 class="s-title r">Soft <em>Skills</em></h2>
+  <div class="skill-grid">
+    <div class="skill-cell r">
+      <div class="s-icon"><i class="fa-solid fa-users"></i></div>
+      <h3 class="s-name">Team Collaboration</h3>
+      <p class="s-desc">Bekerja lintas divisi dengan komunikasi efektif dan terstruktur.</p>
+      <div class="s-track"><div class="s-fill" data-w="85"></div></div>
+    </div>
+    <div class="skill-cell r" style="transition-delay:.08s">
+      <div class="s-icon"><i class="fa-solid fa-brain"></i></div>
+      <h3 class="s-name">Problem Solving</h3>
+      <p class="s-desc">Menganalisis masalah teknis dan mencari solusi kreatif yang efisien.</p>
+      <div class="s-track"><div class="s-fill" data-w="78"></div></div>
+    </div>
+    <div class="skill-cell r" style="transition-delay:.16s">
+      <div class="s-icon"><i class="fa-solid fa-bolt"></i></div>
+      <h3 class="s-name">Fast Learner</h3>
+      <p class="s-desc">Cepat beradaptasi dengan teknologi baru dan ekosistem yang berkembang.</p>
+      <div class="s-track"><div class="s-fill" data-w="90"></div></div>
+    </div>
+    <div class="skill-cell r" style="transition-delay:.24s">
+      <div class="s-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+      <h3 class="s-name">Creative Thinking</h3>
+      <p class="s-desc">Pendekatan desain unik — estetika bertemu fungsionalitas.</p>
+      <div class="s-track"><div class="s-fill" data-w="82"></div></div>
+    </div>
+  </div>
+</section>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<div class="hr"></div>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="s-label r">Tech stack</div>
+  <h2 class="s-title r">My <em>Tools</em></h2>
+  <div class="mq-wrap">
+    <div class="mq-track">
+      <div class="t-pill"><i class="fa-brands fa-html5 t-html"></i> HTML5</div>
+      <div class="t-pill"><i class="fa-brands fa-css3-alt t-css"></i> CSS3</div>
+      <div class="t-pill"><i class="fa-brands fa-js t-js"></i> JavaScript</div>
+      <div class="t-pill"><i class="fa-brands fa-react t-react"></i> React</div>
+      <div class="t-pill"><i class="fa-brands fa-git-alt t-git"></i> Git</div>
+      <div class="t-pill"><i class="fa-brands fa-python t-py"></i> Python</div>
+      <div class="t-pill"><i class="fa-brands fa-figma t-figma"></i> Figma</div>
+      <div class="t-pill"><i class="fa-brands fa-node-js t-node"></i> Node.js</div>
+      <div class="t-pill"><i class="fa-brands fa-html5 t-html"></i> HTML5</div>
+      <div class="t-pill"><i class="fa-brands fa-css3-alt t-css"></i> CSS3</div>
+      <div class="t-pill"><i class="fa-brands fa-js t-js"></i> JavaScript</div>
+      <div class="t-pill"><i class="fa-brands fa-react t-react"></i> React</div>
+      <div class="t-pill"><i class="fa-brands fa-git-alt t-git"></i> Git</div>
+      <div class="t-pill"><i class="fa-brands fa-python t-py"></i> Python</div>
+      <div class="t-pill"><i class="fa-brands fa-figma t-figma"></i> Figma</div>
+      <div class="t-pill"><i class="fa-brands fa-node-js t-node"></i> Node.js</div>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="s-label r">Get in touch</div>
+  <h2 class="s-title r">Hubungi <em>Saya</em></h2>
+  <div class="contact-grid">
+
+    <div class="r">
+      <div class="ch-head">
+        <h3>Let's build something great.</h3>
+        <p>Terbuka untuk kolaborasi, diskusi proyek, atau sekadar ngobrol soal tech dan desain.</p>
+      </div>
+
+      <a href="mailto:gabrielsanjaya@gmail.com" class="cl glass">
+        <div class="cl-ic g"><i class="fa-solid fa-envelope"></i></div>
+        <div><div class="cl-l">Email</div><div class="cl-v">gabrielsanjaya@gmail.com</div></div>
+        <i class="fa-solid fa-arrow-right cl-arr"></i>
+      </a>
+      <a href="https://github.com/fazril299" target="_blank" class="cl glass">
+        <div class="cl-ic n"><i class="fa-brands fa-github"></i></div>
+        <div><div class="cl-l">GitHub</div><div class="cl-v">github.com/fazril299</div></div>
+        <i class="fa-solid fa-arrow-right cl-arr"></i>
+      </a>
+      <a href="https://linkedin.com/in/shinichi" target="_blank" class="cl glass">
+        <div class="cl-ic b"><i class="fa-brands fa-linkedin"></i></div>
+        <div><div class="cl-l">LinkedIn</div><div class="cl-v">linkedin.com/in/shinichi</div></div>
+        <i class="fa-solid fa-arrow-right cl-arr"></i>
+      </a>
+      <a href="https://wa.me/6281234567890" target="_blank" class="cl glass">
+        <div class="cl-ic gr"><i class="fa-brands fa-whatsapp"></i></div>
+        <div><div class="cl-l">WhatsApp</div><div class="cl-v">+62 812-3456-7890</div></div>
+        <i class="fa-solid fa-arrow-right cl-arr"></i>
+      </a>
+    </div>
+
+    <div class="form-box glass r" style="transition-delay:.15s">
+      <div id="cf">
+        <div class="fr">
+          <div class="fg">
+            <label class="fl">Nama</label>
+            <input type="text" class="fi" placeholder="Nama anda" id="fn">
+          </div>
+          <div class="fg">
+            <label class="fl">Email</label>
+            <input type="email" class="fi" placeholder="Email anda" id="fe">
+          </div>
+        </div>
+        <div class="fg">
+          <label class="fl">Subjek</label>
+          <input type="text" class="fi" placeholder="Kolaborasi / pertanyaan..." id="fs">
+        </div>
+        <div class="fg">
+          <label class="fl">Pesan</label>
+          <textarea class="ft" placeholder="Halo Shinichi, saya ingin..." id="fm"></textarea>
+        </div>
+        <button class="fsub" id="sb" onclick="send()">
+          <i class="fa-solid fa-paper-plane"></i> Kirim Pesan
+        </button>
+        <p class="fnote">Biasanya membalas dalam 24 jam ⚡</p>
+      </div>
+      <div class="fsuccess" id="ok">
+        <div class="fsuccess-ic"><i class="fa-solid fa-check"></i></div>
+        <h4>Pesan Terkirim!</h4>
+        <p>Terima kasih sudah menghubungi.<br>Saya akan segera membalas.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</div><!-- .page -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <a href="#hero" class="ft-logo">shinichi<span>.</span>dev</a>
+      <p class="ft-tag">Front-End Developer · Bogor, Indonesia</p>
+    </div>
+    <nav class="ft-links">
+      <a href="#hero">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#certs">Sertifikat</a>
+      <a href="#education">Pendidikan</a>
+      <a href="#skills">Skills</a>
+      <a href="#tools">Tools</a>
+      <a href="#contact">Kontak</a>
+    </nav>
+    <div class="ft-soc">
+      <a href="https://github.com/fazril299" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://wa.me/6281234567890" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p class="ft-copy">© 2025 <span>shinichi</span>.dev — Crafted with passion & caffeine ☕</p>
+    <div class="ft-avail">Available for opportunities</div>
+  </div>
+</footer>
 
 <script>
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-const intro = document.getElementById("intro-screen");
-const startBtn = document.getElementById("start-btn");
-
-startBtn.addEventListener("click",()=>{
-intro.classList.add("slide-up");
+/* ── CURSOR ── */
+const dot  = document.getElementById('c-dot');
+const ring = document.getElementById('c-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function tick(){
+  rx+=(mx-rx)*.13; ry+=(my-ry)*.13;
+  dot.style.cssText  =`left:${mx-2.5}px;top:${my-2.5}px`;
+  ring.style.cssText =`left:${rx-15}px;top:${ry-15}px`;
+  requestAnimationFrame(tick);
+})();
+document.querySelectorAll('a,button,.cert-card,.skill-cell,.t-pill,.proj-card,.cl').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{dot.classList.add('on');ring.classList.add('on');});
+  el.addEventListener('mouseleave',()=>{dot.classList.remove('on');ring.classList.remove('on');});
 });
 
-AOS.init({
-once:true,
-duration:800,
-offset:100
-});
-
-/* RIPPLE EFFECT */
-document.querySelectorAll(".nav-links a, .btn-primary").forEach(btn => {
-
-btn.addEventListener("click", function(e){
-
-const ripple = document.createElement("span");
-ripple.classList.add("ripple");
-
-const size = Math.max(this.clientWidth, this.clientHeight);
-
-ripple.style.width = size + "px";
-ripple.style.height = size + "px";
-
-ripple.style.left = e.offsetX - size/2 + "px";
-ripple.style.top = e.offsetY - size/2 + "px";
-
-this.appendChild(ripple);
-
-setTimeout(()=>{
-ripple.remove();
-},600);
-
-});
-
-});
-
-});
-
-const toggle = document.getElementById("darkToggle");
-
-toggle.addEventListener("click",()=>{
-
-if(document.body.getAttribute("data-theme") === "dark"){
-document.body.removeAttribute("data-theme");
-}else{
-document.body.setAttribute("data-theme","dark");
+/* ── SPLINE ── */
+let spOn=true;
+const sv=()=>document.querySelector('spline-viewer');
+function toggleSp(){
+  spOn=!spOn;
+  sv().style.pointerEvents=spOn?'auto':'none';
+  document.getElementById('spIc').className=spOn?'fa-solid fa-hand-pointer':'fa-solid fa-eye';
+  document.getElementById('spTx').textContent=spOn?'Interact':'View Only';
+}
+function resetSp(){
+  const v=sv(),p=v.parentNode,c=v.cloneNode(true);
+  p.removeChild(v); p.appendChild(c);
+  setTimeout(()=>{ sv().style.pointerEvents=spOn?'auto':'none'; },80);
 }
 
+/* ── PROGRESS ── */
+window.addEventListener('scroll',()=>{
+  const p=window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100;
+  document.getElementById('bar').style.width=p+'%';
+},{passive:true});
+
+/* ── NAV ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{ nav.classList.toggle('on',window.scrollY>40); },{passive:true});
+
+/* ── NAV ACTIVE ── */
+document.querySelectorAll('section[id],main[id]').forEach(s=>{
+  new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+        const a=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if(a) a.classList.add('active');
+      }
+    });
+  },{threshold:.35}).observe(s);
 });
 
-const tools = document.querySelectorAll(".tool");
+/* ── REVEAL ── */
+new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');e.target.style.removeProperty('transition-delay');}
+  });
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'}).observe ? 
+document.querySelectorAll('.r').forEach(el=>{
+  new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('in');} });
+  },{threshold:.08,rootMargin:'0px 0px -30px 0px'}).observe(el);
+}) : null;
 
-tools.forEach(tool => {
-  tool.addEventListener("mousemove", (e) => {
-    const rect = tool.getBoundingClientRect();
+/* ── SKILL BARS ── */
+document.querySelectorAll('.s-fill').forEach(b=>{
+  new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){b.style.width=b.dataset.w+'%';} });
+  },{threshold:.6}).observe(b);
+});
 
+/* ── FORM ── */
+function send(){
+  const n=document.getElementById('fn').value.trim();
+  const e=document.getElementById('fe').value.trim();
+  const m=document.getElementById('fm').value.trim();
+  if(!n||!e||!m){
+    [document.getElementById('fn'),document.getElementById('fe'),document.getElementById('fm')].forEach(i=>{
+      if(!i.value.trim()){i.style.borderColor='rgba(45,212,191,.5)';i.addEventListener('input',()=>i.style.borderColor='',{once:true});}
+    });
+    return;
+  }
+  const btn=document.getElementById('sb');
+  btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Mengirim...';
+  btn.style.opacity='.6';
+  setTimeout(()=>{
+    document.getElementById('cf').style.display='none';
+    document.getElementById('ok').style.display='flex';
+  },1800);
+}
+
+/* ── TILT ANIMATION FOR HERO IMAGE ── */
+const heroImgBox = document.querySelector('.creative-img-box');
+if(heroImgBox) {
+  heroImgBox.addEventListener('mousemove', (e) => {
+    const rect = heroImgBox.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-
+    
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-
-    const rotateX = (centerY - y) / 12;
-    const rotateY = (x - centerX) / 12;
-
-    tool.style.transform = `
-      rotateX(${rotateX}deg)
-      rotateY(${rotateY}deg)
-      scale(1.07)
-    `;
+    
+    const rotateX = ((y - centerY) / centerY) * -12;
+    const rotateY = ((x - centerX) / centerX) * 12;
+    
+    heroImgBox.style.transition = 'transform 0.1s ease-out, box-shadow 0.1s ease-out';
+    heroImgBox.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    
+    let glare = heroImgBox.querySelector('.creative-glare-effect');
+    if(!glare) {
+      glare = document.createElement('div');
+      glare.className = 'creative-glare-effect';
+      heroImgBox.appendChild(glare);
+    }
+    glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.4) 0%, transparent 60%)`;
   });
-
-  tool.addEventListener("mouseleave", () => {
-    tool.style.transform = ""; // balik normal
+  
+  heroImgBox.addEventListener('mouseleave', () => {
+    heroImgBox.style.transition = 'transform 0.6s var(--spring), box-shadow 0.6s var(--spring)';
+    heroImgBox.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+    const glare = heroImgBox.querySelector('.creative-glare-effect');
+    if(glare) glare.style.background = 'transparent';
   });
-});
+}
 </script>
-
-
 </body>
 </html>
-
